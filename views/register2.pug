@@ -20,84 +20,86 @@ head
     /* .btn:hover{
     background-color: purple;
     } */
-form(action='/register' name='register' onsubmit='return Validate();' method='POST')
-  .row(style='width:70%; margin: auto; border:black solid 1px; padding-left:40px;')
-    #heading.row(style='background-color: purple; height:60px;')
-      h3(style='color: white; margin: auto;') Student Registration Form
-    .alert(style='height: 60px; color: white; background-color: green; margin-left: -12px;')
-      | Registered Successfully
-    .row(style='margin-top:20px;')
-      .col-md-8
-        div
-          label(for='sur-name')
-            | Sur name
+if data.length 
+  each student in data   
+    form(action='/register' name='register' onsubmit='return Validate();' method='POST' enctype="multipart/form-data")
+      .row(style='width:70%; margin: auto; border:black solid 1px; padding-left:40px;')
+        #heading.row(style='background-color: purple; height:60px;')
+          h3(style='color: white; margin: auto;') Student Registration Form
+        .alert(style='height: 60px; color: white; background-color: green; margin-left: -12px;')
+          | Registered Successfully
+        .row(style='margin-top:20px;')
+          .col-md-8
+            div
+              label(for='sur-name')
+                | Sur name
+                span.star *
+              input#sur-name.form-control(type='text' name='surname' placeholder='Enter Surname' value= student.surname)
+              span#SurNErr
+            div
+              label(for='GivenName')
+                | Given name
+                span.star *
+              input#GivenName.form-control(type='text' name='givenname' placeholder='Enter Given Name')
+              span#GNErr
+            div
+              label(for='title') Title
+              select#title.form-control(type='text' name='title' placeholder='--Select Title--')
+                option(value='') --Select Title--
+                option(value='Mr.') Mr.
+                option(value='Mrs') Mrs
+                option(value='Ms') Ms
+          .col-md-4
+            div(style='margin-left:20px; margin-top: 20px;')
+              .pic
+                img(src=student.photo alt='' style='height:200px; width:200px')
+              input#photo.form-control(type='file' name='photo' style='width: 200px;')
+        .row
+          label
+            | Gender
             span.star *
-          input#sur-name.form-control(type='text' name='surname' placeholder='Enter Surname')
-          span#SurNErr
-        div
-          label(for='GivenName')
-            | Given name
-            span.star *
-          input#GivenName.form-control(type='text' name='givenname' placeholder='Enter Given Name')
-          span#GNErr
-        div
-          label(for='title') Title
-          select#title.form-control(type='text' name='title' placeholder='--Select Title--')
-            option(value='') --Select Title--
-            option(value='Mr.') Mr.
-            option(value='Mrs') Mrs
-            option(value='Ms') Ms
-      .col-md-4
-        div(style='margin-left:20px; margin-top: 20px;')
-          .pic
-            img(src='' alt='' style='height:200px; width:200px')
-          input#photo.form-control(type='file' name='photo' style='width: 200px;')
-    .row
-      label
-        | Gender
-        span.star *
-      #radio(style='display: flex; flex-direction: row;')
-        div(style='margin:0 20px;')
-          input#male(type='radio' name='gender' value='male' checked='')
-          label(for='male') Male
-        div
-          input#female(type='radio' name='gender' value='female')
-          label(for='female') Female
-        span#gendErr
-    .row
-      .col-md-6
-        div
-          label(for='dob')
-            | Date of Birth
-            span.star *
-          input#dob.form-control(type='date' name='dob')
-          span#dobErr
-      .col-md-6
-        div
-          label(for='formId1')
-            | Country
-            span.star *
-          select#country.form-control(type='text' name='country' placeholder='--Select Country--')
-            option(value='') --Select Country--
-            option(value='Uganda') Uganda
-            option(value='SouthAfrica') Tanzania
-            option(value='Kenya') Kenya
-            option(value='Rwanda') Rwanda
-            option(value='Burundi') Burundi
-          span#countryErr
-      div
-        label(for='residence')
-          | Place of Residence
-          span.star *
-        input#residence.form-control(type='text' name='residence' placeholder='Enter Place of Residence')
-        span#resErr
-    .row
-      div
-        label(for='nationality')
-          | Nationality
-          span.star *
-        input#nationality.form-control(type='text' name='nationality' placeholder='Enter Nationality here')
-        span#natErr
-    button#btn(type='submit' href="/register1/"+data.id) Register
+          #radio(style='display: flex; flex-direction: row;')
+            div(style='margin:0 20px;')
+              input#male(type='radio' name='gender' value='male' checked=student.gender==='male')
+              label(for='male') Male
+            div
+              input#female(type='radio' name='gender' value='female' checked=student.gender==='female')
+              label(for='female') Female
+            span#gendErr
+        .row
+          .col-md-6
+            div
+              label(for='dob')
+                | Date of Birth
+                span.star *
+              input#dob.form-control(type='date' name='dob' value=student.dob)
+              span#dobErr
+          .col-md-6
+            div
+              label(for='formId1')
+                | Country
+                span.star *
+              select#country.form-control(type='text' name='country' placeholder='--Select Country--' value=student.country)
+                option(value='') --Select Country--
+                option(value="Uganda" selected=student.country==='Uganda') Uganda
+                option(value="Tanzania" selected=student.country==='Tanzania') Tanzania
+                option(value="Kenya" selected=student.country==='Kenya') Kenya
+                option(value="Rwanda" selected=student.country==='Rwanda') Rwanda
+                option(value="Burundi" selected=student.country==='Burundi') Burundi
+              span#countryErr
+          div
+            label(for='residence')
+              | Place of Residence
+              span.star *
+            input#residence.form-control(type='text' name='residence' placeholder='Enter Place of Residence')
+            span#resErr
+        .row
+          div
+            label(for='nationality')
+              | Nationality
+              span.star *
+            input#nationality.form-control(type='text' name='nationality' placeholder='Enter Nationality here')
+            span#natErr
+        button#btn(type='submit') Register
 script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4' crossorigin='anonymous')
 script(src='./validation.js')

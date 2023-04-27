@@ -4,9 +4,9 @@ const router = express.Router();
 const Register = require('../models/registerModel')
 const multer = require("multer")
 
-router.get("/register", (req,res)=>{
-    res.render("register2")
-});
+// router.get("/register", (req,res)=>{
+//     res.render("register2")
+// });
  
 // multer
 let storage = multer.diskStorage({
@@ -19,10 +19,15 @@ let imageupload = multer({storage:storage})  // creating an instance in multer
 router.post("/register",imageupload.single("photo"), async(req,res) => {
     try{
         const register = new Register(req.body)
+        register.photo= req.file.originalname 
         await register.save()
         res.redirect("/register") // we redirect to a path
         console.log(req.body)
+        if(register){
+            alert("Registered Successfully")
+        }
     }
+
     catch(err){
         console.log(err)
     }
@@ -30,7 +35,7 @@ router.post("/register",imageupload.single("photo"), async(req,res) => {
 
 //redirecting from the db
 // we redirect to a path and render to a file
-router.get("/register1", async(req,res)=>{
+router.get("/register", async(req,res)=>{
     try{
         let items = await Register.find();
         
