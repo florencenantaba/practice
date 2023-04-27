@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
+    <style>
+        .star{
+            color: red;
+        }
+        #btn{
+            background-color: purple;
+            color: white;
+            width: 20%;
+            margin-left:76%;
+            height:50px;
+            border-radius: 10px;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        /* .btn:hover{
+           background-color: purple;
+        } */
+        /* input[type="file"]{
+            display: none;
+        } */
+    </style>
+</head>
+
+<body>
+    <form action="#" name="" onsubmit="return Validate();" method="POST">
+        <div class="row" style="width:70%; margin: auto; border:black solid 1px; padding-left:40px;">
+            <div class="row" id="heading" style="background-color: purple; height:60px;">
+                <h3 style="color: white; margin: auto;">Student Registration Form</h3>
+            </div>
+            <div class="alert" style="height: 60px; color: white; background-color: green; margin-left: -12px;">
+             Registered Successfully
+            </div>
+            <div class="row" style="margin-top:20px;">
+                <div class="col-md-8">
+                    <div>                        
+                        <label for="sur-name" >Sur name<span class="star">*</span></label>
+                        <input type="text" class="form-control" name="surname" id="sur-name" placeholder="Enter Surname">
+                        <span id="SurNErr"></span>
+                    </div>
+                    <div>
+                        <label for="GivenName">Given name<span class="star">*</span></label>
+                        <input type="text" class="form-control" name="givenname" id="GivenName" placeholder="Enter Given Name">
+                        <span id="GNErr"></span>
+                    </div>
+                    <div>
+                        <label for="title">Title</label>
+                        <select type="text" class="form-control" name="title" id="title" placeholder="--Select Title--">
+                            <option value="">--Select Title--</option>
+                            <option value="Mr.">Mr.</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Ms">Ms</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div style= 'margin-left:20px; margin-top: 20px;'>
+                       <div class="pic">
+                           <img src="" alt="" style="height:200px; width:200px">
+                        </div>
+                        <!-- <input type="file" class="form-control" id="photo"> -->
+                        <input type="file" class="form-control" name="photo" style="width: 200px;" id="photo">
+                        <!-- <label class="input-group-text" for="inputGroupFile02">Upload Photo</label> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label>Gender<span class="star">*</span></label>
+                <div style="display: flex; flex-direction: row;" id="radio">
+                    <div style="margin:0 20px;">
+                        <input type="radio" name="gender" id="male" value="male" checked>
+                        <label for="male">Male</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="gender" id="female" value="female">
+                        <label for="female">Female</label>
+                    </div>
+                    <span id="gendErr"></span>
+                  </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <label for="dob">Date of Birth<span class="star">*</span></label>
+                        <input type="date" class="form-control" name="dob" id="dob">
+                        <span id="dobErr"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <label for="formId1">Country<span class="star">*</span></label>
+                        <select type="text" class="form-control" name="country" id="country" placeholder="--Select Country--">
+                            <option  value="">--Select Country--</option>
+                            <option value="Uganda">Uganda</option>
+                            <option value="SouthAfrica">Tanzania</option>
+                            <option value="Kenya">Kenya</option>
+                            <option value="Rwanda">Rwanda</option>
+                            <option value="Burundi">Burundi</option>
+                            </select>
+                            <span id="countryErr"></span>
+                    </div>
+                </div>
+                <div>
+                    <label for="residence">Place of Residence<span class="star">*</span></label>
+                    <input type="text" class="form-control" name="residence" id="residence" placeholder="Enter Place of Residence">
+                    <span id="resErr"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label for="nationality">Nationality<span class="star">*</span></label>
+                    <input type="text" class="form-control" name="nationality" id="nationality" placeholder="Enter Nationality here">
+                    <span id="natErr"></span>
+                </div>
+            </div>
+            <button id="btn" type="submit">Register</button>
+        </div>
+            
+        
+        
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <script src="./public/validation.js"></script>
+</body>
+
+</html>
